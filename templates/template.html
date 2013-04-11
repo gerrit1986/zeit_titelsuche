@@ -15,44 +15,37 @@
 
 <body>
     <p>Stand: {{ current_date }}</p>
-    <h1>Drei Artikel aus ZEIT ONLINE mit „{{ query }}“ im Titel:</h1>
+    <h1>Artikel auf ZEIT ONLINE mit „{{ query }}“ im Titel:</h1>
         <p>
-            <ol>
-                <li> {{ release_date1 }} | <a href="{{ news_link1 }} " target="_blank">{{ news_title1 }}</a></li>
-                <li> {{ release_date2 }} | <a href="{{ news_link2 }} " target="_blank">{{ news_title2 }}</a></li>
-                <li> {{ release_date3 }} | <a href="{{ news_link3 }} " target="_blank">{{ news_title3 }}</a></li>
-            </ol>
+            <form id="form" name="form">
+                <label for="query">Term:</label><input type="text" id="query" name="query">
+                <input type="button" value="Titel durchsuchen" onclick="search();">
+            </form>
         </p>
-    <p>
-        <form id="form" name="form">
-            <label for="query">Term:</label><input type="text" id="query" name="query">
-            <input type="button" value="Titel durchsuchen" onclick="search();">
-        </form>
-    </p>
-    <p>{% if messages %}
-        <ul class="messages">
-            {% for message in messages %}
-                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        <p>
+            {% for item in news_items %}
+                <li>
+                    {{ item.3 }} | <a href="{{ item.2 }}" target="_blank">{{ item.0 }}</a>
+                </li>
+            {% empty %}
+                <p>
+                    Leider kein Treffer für „{{ query }}“.
+                </p>
             {% endfor %}
-        </ul>
-    {% endif %}
-    </p>
+        </p>
     <hr />
     <p>
         <h2>Zu erledigen:</h2>
             <h3>Fehler</h3>
                 <ul>
-                    <li>Query sollte mit ENTER absetzbar sein</li>
-                    <li>Bei keinem Treffer sollte man zurück zur Maske kommen, eventuell sollte Nachricht angezeigt werden</li>
-                    <li>Datums- und Zeitformat sollten deutschen Standards entsprechen (wie oben links)</li>
-                    <li>Warum gibt <a href="http://127.0.0.1:8000/query/Obama"> „Obama“</a> kein Ergebnis? API-Problem?</li>
+                    <li>Anfrage sollte mit ENTER absetzbar sein</li>
+                    <li>Bei keinem Treffer sollte eine Nachricht angezeigt werden</li>
                     <li>style.css korrekt über /static/-Pfad einbinden</li>
-                    <li>Term "#" kann nicht gesucht werden</li>
+                    <li>script.js korrekt über /static/-Pfad einbinden</li>
+                    <li>Terme mit bestimmten Sonderzeichen wie "#" können nicht gesucht werden</li>
                 </ul>
             <h3>Features</h3>
             <ul>
-                <li>Ergebnisliste sollte dynamisch HTML generieren. Nicht im Template hart kodiert lassen</li>
-                <li>Anzahl der Artikel sollte variabel sein und bestenfalls alle Ergebnisse von der API umfassen</li>
                 <li>Neben oder unter den Titel sollte die Zusammenfassung erscheinen</li>
                 <li>Suche nach Phrasen, NOT, AND, OR, XOR sollte möglich sein. Vorschläge für Operatoren:</li>
             <ul>
@@ -66,8 +59,8 @@
                 <li>
                 Bei mehrdeutigen Termen Konzeptdisambiguierung anbieten. Z.&nbspB. via
                 <a href="http://de.wikipedia.org/wiki/Kategorie:Begriffskl%C3%A4rung">Wikipedia:Begriffsklärung</a>
-                als Vorschlag („Meinten Sie ...?)“ und dann Suche mit dem Wert vom Qualifier in Zusammenfassung
-                und Volltext.
+                als Vorschlag („Meinten Sie ...?)“ und dann neue Suche mit dem Wert vom Qualifier in Zusammenfassung
+                und Volltext für bessere Ergebnisse.
                 </li>
             </ul>
     </p>
