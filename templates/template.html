@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html"
+      xmlns="http://www.w3.org/1999/html">
+
+<head>
+    <title>Titelsuche für ZEIT ONLINE</title>
+    <script type="text/javascript">
+        function search() {
+            window.location=("http://127.0.0.1:8000/query/"+document.form.query.value);
+        }
+    </script>
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href={% static "zeit/templates/style.css" %} media="screen" />
+</head>
+
+<body>
+    <p>Stand: {{ current_date }}</p>
+    <h1>Drei Artikel aus ZEIT ONLINE mit „{{ query }}“ im Titel:</h1>
+        <p>
+            <ol>
+                <li> {{ release_date1 }} | <a href="{{ news_link1 }} " target="_blank">{{ news_title1 }}</a></li>
+                <li> {{ release_date2 }} | <a href="{{ news_link2 }} " target="_blank">{{ news_title2 }}</a></li>
+                <li> {{ release_date3 }} | <a href="{{ news_link3 }} " target="_blank">{{ news_title3 }}</a></li>
+            </ol>
+        </p>
+    <p>
+        <form id="form" name="form">
+            <label for="query">Term:</label><input type="text" id="query" name="query">
+            <input type="button" value="Titel durchsuchen" onclick="search();">
+        </form>
+    </p>
+    <p>{% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    </p>
+    <hr />
+    <p>
+        <h2>Zu erledigen:</h2>
+            <h3>Fehler</h3>
+                <ul>
+                    <li>Query sollte mit ENTER absetzbar sein</li>
+                    <li>Bei keinem Treffer sollte man zurück zur Maske kommen, eventuell sollte Nachricht angezeigt werden</li>
+                    <li>Datums- und Zeitformat sollten deutschen Standards entsprechen (wie oben links)</li>
+                    <li>Warum gibt <a href="http://127.0.0.1:8000/query/Obama"> „Obama“</a> kein Ergebnis? API-Problem?</li>
+                    <li>style.css korrekt über /static/-Pfad einbinden</li>
+                    <li>Term "#" kann nicht gesucht werden</li>
+                </ul>
+            <h3>Features</h3>
+            <ul>
+                <li>Ergebnisliste sollte dynamisch HTML generieren. Nicht im Template hart kodiert lassen</li>
+                <li>Anzahl der Artikel sollte variabel sein und bestenfalls alle Ergebnisse von der API umfassen</li>
+                <li>Neben oder unter den Titel sollte die Zusammenfassung erscheinen</li>
+                <li>Suche nach Phrasen, NOT, AND, OR, XOR sollte möglich sein. Vorschläge für Operatoren:</li>
+            <ul>
+                <li>Phrase: "TermA TermB"</li>
+                <li>Trunkierung: "TermA*"</li>
+                <li>NOT: "-TermA"</li>
+                <li>AND: "TermA + TermB"</li>
+                <li>OR: "TermA | TermB"</li>
+                <li>XOR: "TermA - TermB"</li>
+            </ul>
+                <li>
+                Bei mehrdeutigen Termen Konzeptdisambiguierung anbieten. Z.&nbspB. via
+                <a href="http://de.wikipedia.org/wiki/Kategorie:Begriffskl%C3%A4rung">Wikipedia:Begriffsklärung</a>
+                als Vorschlag („Meinten Sie ...?)“ und dann Suche mit dem Wert vom Qualifier in Zusammenfassung
+                und Volltext.
+                </li>
+            </ul>
+    </p>
+</body>
+
+</html>
