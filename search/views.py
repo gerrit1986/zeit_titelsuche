@@ -20,7 +20,7 @@ def home(home):
                                     'news_link3' : news_items[2][2]}))
     return HttpResponse(html)
 
-# query, length depends on number of results
+# processes all query results
 def query(request, query):
     now = datetime.datetime.now()
     template = get_template('template.html')
