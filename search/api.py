@@ -16,7 +16,7 @@ def buildNewsItems(query):
         'fields' : 'title,subtitle,href,release_date',
     }
     url = 'http://api.zeit.de/content?'
-    headers = {'X-Authorization': 'API_KEY'}
+    headers = {'X-Authorization': 'API-KEY'}
     request = requests.get(url, params=params, headers=headers)
     json = request.json()
     news_items = []
