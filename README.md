@@ -10,12 +10,5 @@ It was created using [Django](http://djangoproject.com) and [ZEIT ONLINE Content
 ## What will be next? ##
 * Short summaries
 * Summaries and full text should be searchable
-
-The following search operators should work:
-* ""
-* \*
-* NOT
-* AND
-* OR
-* XOR
+* The following search operators should work: (""; \*; NOT; AND; OR; XOR)
 * Basic concept disambiguation
