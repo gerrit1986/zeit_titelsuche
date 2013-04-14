@@ -1,5 +1,5 @@
 ## What's this? ##
-It's a simple search interface for [ZEIT ONLINE ](http://zeit.de).
+It's a simple search interface for [ZEIT ONLINE](http://zeit.de).
 
 ## What does it do? ##
 It searches headings of ZEIT articles and returns all hits in descending order by date (most recent on top).
