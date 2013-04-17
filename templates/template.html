@@ -4,6 +4,8 @@
 
 <head>
     <title>Titelsuche für ZEIT ONLINE</title>
+    <p>Stand: {{ current_date }}</p>
+    <img src="http://upload.wikimedia.org/wikipedia/commons/6/60/Die_Zeit-Logo-Bremen.svg" height=73px, width=400px" />
     <script type="text/javascript">
         function search() {
             window.location=("http://127.0.0.1:8000/query/"+document.form.query.value);
@@ -14,7 +16,6 @@
 </head>
 
 <body>
-    <p>Stand: {{ current_date }}</p>
     <h1>Artikel auf ZEIT ONLINE mit „{{ query }}“ im Titel:</h1>
         <p>
             <form id="form" name="form">
@@ -22,7 +23,6 @@
                 <input type="button" value="Titel durchsuchen" onclick="search();">
             </form>
         </p>
-<!-- number of news_items = length of list items -->
         <p>
             {% for item in news_items %}
                 <li>
@@ -41,30 +41,31 @@
                 <ul>
                     <li>Querystring URL-safe escapen oder encodieren. Grund Terme mit bestimmten Sonderzeichen wie "#"
                         in „#aufschrei“ können nicht gesucht werden:</li>
-                    <li>Anfrage sollte mit ENTER absetzbar sein</li>
+                    <li>Anfrage sollte mit ENTER absetzbar sein, momentan nur per Klick und in URL-Zeile möglich</li>
                     <li>style.css korrekt über /static/-Pfad einbinden</li>
                     <li>script.js korrekt über /static/-Pfad einbinden</li>
                 </ul>
             <h3>Features</h3>
             <ul>
-                <li>Neben oder unter den Titel sollte die Zusammenfassung erscheinen</li>
+                <li>Neben oder unter dem Titel sollte die Zusammenfassung erscheinen</li>
                 <li>Suche nach Phrasen, NOT, AND, OR, XOR sollte möglich sein. Vorschläge für Operatoren:</li>
+            </ul>
+            <h3>Ideen</h3>
             <ul>
+                <li>Daten von <a href="http://offenesparlament.de/">Offenes Parlament</a> und ZEIT online zu einander
+                    in Bezug setzten und auf einer Oberfläche auswerten? Stichwort „Agenda-Setting“</li>
                 <li>Phrase: "TermA TermB"</li>
                 <li>Trunkierung: "TermA*"</li>
                 <li>NOT: "-TermA"</li>
                 <li>AND: "TermA + TermB"</li>
                 <li>OR: "TermA | TermB"</li>
                 <li>XOR: "TermA - TermB"</li>
-            </ul>
-                <li>
-                Bei mehrdeutigen Termen Konzeptdisambiguierung anbieten. Z.&nbspB. via
+                <li>Bei mehrdeutigen Termen Konzeptdisambiguierung anbieten. Z.&nbspB. via
                 <a href="http://de.wikipedia.org/wiki/Kategorie:Begriffskl%C3%A4rung">Wikipedia:Begriffsklärung</a>
-                als Vorschlag („Meinten Sie ...?)“ und dann neue Suche mit dem Wert vom Qualifier in Zusammenfassung
-                und Volltext für bessere Ergebnisse.
-                </li>
+                als Vorschlag („Meinten Sie ...?)“ und dann neue Suche mit dem Wert Qualifier in Zusammenfassungen
+                und Volltexten für bessere Ergebnisse. Kann man dafür Precision und Recall bestimmen?</li>
             </ul>
-    </p>
+        </p>
 </body>
 
 </html>
