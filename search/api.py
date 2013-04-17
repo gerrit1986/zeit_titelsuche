@@ -2,6 +2,7 @@
 import datetime
 import requests
 
+
 def buildNewsItems(query):
     """Returns news_items: a list containing tuples with
     0: title
@@ -11,9 +12,9 @@ def buildNewsItems(query):
     """
     title_query = 'title:' + unicode(query)
     params = {
-        'q' : title_query,
-        'limit' : '100',
-        'fields' : 'title,subtitle,href,release_date',
+        'q': title_query,
+        'limit': '25',
+        'fields': 'title,subtitle,href,release_date',
     }
     url = 'http://api.zeit.de/content?'
     headers = {'X-Authorization': 'API-KEY'}
@@ -26,7 +27,7 @@ def buildNewsItems(query):
             pub_date = pub_date[0:10] + ' ' + pub_date[11:-1]
             pub_date = datetime.datetime.strptime(pub_date, '%Y-%m-%d %H:%M:%S')
             news_items.append((result['title'], result['subtitle'], result['href'], pub_date))
-    except KeyError:
+    except (KeyError, ValueError):
         pass
     return news_items
 

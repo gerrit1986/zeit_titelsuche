@@ -1,71 +1,43 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html"
-      xmlns="http://www.w3.org/1999/html">
+      xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html"
+      xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
 
 <head>
-    <title>Titelsuche für ZEIT ONLINE</title>
-    <p>Stand: {{ current_date }}</p>
-    <img src="http://upload.wikimedia.org/wikipedia/commons/6/60/Die_Zeit-Logo-Bremen.svg" height=73px, width=400px" />
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static style.css %}" media="screen" />
+    <img src="http://upload.wikimedia.org/wikipedia/commons/6/60/Die_Zeit-Logo-Bremen.svg" height=73px, width=400px />
     <script type="text/javascript">
         function search() {
             window.location=("http://127.0.0.1:8000/query/"+document.form.query.value);
         }
     </script>
-    {% load staticfiles %}
-    <link rel="stylesheet" type="text/css" href={% static "zeit/templates/style.css" %} media="screen" />
+    <title>
+        Titelsuche für ZEIT ONLINE
+    </title>
 </head>
 
 <body>
-    <h1>Artikel auf ZEIT ONLINE mit „{{ query }}“ im Titel:</h1>
-        <p>
-            <form id="form" name="form">
-                <label for="query">Term:</label><input type="text" id="query" name="query">
-                <input type="button" value="Titel durchsuchen" onclick="search();">
-            </form>
-        </p>
+<p>Stand: {{ current_date }}</p>
+    <p><form id="form" name="form">
+        <label for="query">Term:</label><input type="text" id="query" name="query">
+        <input type="button" value="Titel durchsuchen" onclick="search();"></form>
+    </p>
+    <h2>Artikel auf ZEIT ONLINE mit „{{ query }}“ im Titel:</h2>
         <p>
             {% for item in news_items %}
-                <li>
-                    {{ item.3 }} | <a href="{{ item.2 }}" target="_blank">{{ item.0 }}</a>
-                </li>
-            {% empty %}
                 <p>
+                    <li>
+                    <!---  date                    url                         title --->
+                        {{ item.3 }} | <a href="{{ item.2 }}" target="_blank">{{ item.0 }}</a><br />
+                        <small>{{ item.1 }}</small>
+                    </li>
+                </p>
+                <p>
+            {% empty %}
                     Leider kein Treffer für „{{ query }}“.
                 </p>
             {% endfor %}
-        </p>
-    <hr />
-    <p>
-        <h2>Zu erledigen:</h2>
-            <h3>Fehler</h3>
-                <ul>
-                    <li>Querystring URL-safe escapen oder encodieren. Grund Terme mit bestimmten Sonderzeichen wie "#"
-                        in „#aufschrei“ können nicht gesucht werden:</li>
-                    <li>Anfrage sollte mit ENTER absetzbar sein, momentan nur per Klick und in URL-Zeile möglich</li>
-                    <li>style.css korrekt über /static/-Pfad einbinden</li>
-                    <li>script.js korrekt über /static/-Pfad einbinden</li>
-                </ul>
-            <h3>Features</h3>
-            <ul>
-                <li>Neben oder unter dem Titel sollte die Zusammenfassung erscheinen</li>
-                <li>Suche nach Phrasen, NOT, AND, OR, XOR sollte möglich sein. Vorschläge für Operatoren:</li>
-            </ul>
-            <h3>Ideen</h3>
-            <ul>
-                <li>Daten von <a href="http://offenesparlament.de/">Offenes Parlament</a> und ZEIT online zu einander
-                    in Bezug setzten und auf einer Oberfläche auswerten? Stichwort „Agenda-Setting“</li>
-                <li>Phrase: "TermA TermB"</li>
-                <li>Trunkierung: "TermA*"</li>
-                <li>NOT: "-TermA"</li>
-                <li>AND: "TermA + TermB"</li>
-                <li>OR: "TermA | TermB"</li>
-                <li>XOR: "TermA - TermB"</li>
-                <li>Bei mehrdeutigen Termen Konzeptdisambiguierung anbieten. Z.&nbspB. via
-                <a href="http://de.wikipedia.org/wiki/Kategorie:Begriffskl%C3%A4rung">Wikipedia:Begriffsklärung</a>
-                als Vorschlag („Meinten Sie ...?)“ und dann neue Suche mit dem Wert Qualifier in Zusammenfassungen
-                und Volltexten für bessere Ergebnisse. Kann man dafür Precision und Recall bestimmen?</li>
-            </ul>
-        </p>
+     </p>
 </body>
-
 </html>
