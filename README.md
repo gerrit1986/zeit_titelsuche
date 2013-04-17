@@ -8,6 +8,6 @@ It searches for certain terms in headings of ZEIT articles and returns all hits 
 It was created using [Django](http://djangoproject.com) and [ZEIT ONLINE Content API](http://developer.zeit.de/index/).
 
 ## What's next? ##
-* Summaries and full text should be searchable, depending on the user's choice
+* Summaries and full text should be searchable
 * The following search operators should work: (`""`; `*`; `NOT`; `AND`; `OR`; `XOR`)
-* Basic concept disambiguation should offer
+* Basic concept disambiguation
