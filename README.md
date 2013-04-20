@@ -7,7 +7,11 @@ It searches for certain terms in headings of ZEIT articles and returns all hits 
 ## How does it work? ##
 It was created using [Django](http://djangoproject.com) and [ZEIT ONLINE Content API](http://developer.zeit.de/index/).
 
+## What is it good for? ##
+It's a pet project for gaining skill in Python and Django. It might have useful features someday, e.g. search within
+user-defined scopes (title, subtitle, text), clearly defined search operators and basic concept disambiguation.
+
 ## What's next? ##
-* Summaries and full text should be searchable
+* Summaries and full text should be searchable with respect to the user's choice
 * The following search operators should work: (`""`; `*`; `NOT`; `AND`; `OR`; `XOR`)
-* Basic concept disambiguation
+* Basic concept disambiguation ("Did you mean ...?")

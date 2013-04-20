@@ -28,14 +28,13 @@
             {% for item in news_items %}
                 <p>
                     <li>
-                    <!---  date                    url                         title --->
                         {{ item.3 }} | <a href="{{ item.2 }}" target="_blank">{{ item.0 }}</a><br />
                         <small>{{ item.1 }}</small>
                     </li>
                 </p>
                 <p>
             {% empty %}
-                    Leider kein Treffer für „{{ query }}“.
+                    Leider kein Treffer für „{{ query }}“ oder es ist ein technischer Fehler aufgetreten.
                 </p>
             {% endfor %}
      </p>

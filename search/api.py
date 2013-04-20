@@ -30,5 +30,3 @@ def buildNewsItems(query):
     except (KeyError, ValueError):
         pass
     return news_items
-
-print buildNewsItems('Merkel')
