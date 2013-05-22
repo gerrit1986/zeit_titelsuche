@@ -14,4 +14,4 @@ user-defined scopes (title, subtitle, text), clearly defined search operators an
 ## What's next? ##
 * Summaries and full text should be searchable with respect to the user's choice
 * The following search operators should work: (`""`; `*`; `NOT`; `AND`; `OR`; `XOR`)
-* Basic concept disambiguation ("Did you mean ...?")
+* Basic concept disambiguation ("Do you mean ...?")
