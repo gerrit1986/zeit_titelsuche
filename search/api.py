@@ -4,11 +4,14 @@ import requests
 
 
 def buildNewsItems(query):
-    """Returns news_items: a list containing tuples with
-    0: title
-    1: subtile
-    2: href
-    3: pub_date
+    """
+    Returns news_items: a list containing tuples which contains at indices
+
+    0: title of the document
+    1: subtitle of the document
+    2: href to the document
+    3: release_date of the document
+    :param query: query given by the user via URL request
     """
     title_query = 'title:' + unicode(query)
     params = {
@@ -23,10 +26,12 @@ def buildNewsItems(query):
     news_items = []
     try:
         for result in json['matches']:
-            pub_date = result['release_date']
-            pub_date = pub_date[0:10] + ' ' + pub_date[11:-1]
-            pub_date = datetime.datetime.strptime(pub_date, '%Y-%m-%d %H:%M:%S')
-            news_items.append((result['title'], result['subtitle'], result['href'], pub_date))
+            # pretty date format
+            release_date = result['release_date']
+            release_date = release_date[0:10] + ' ' + release_date[11:-1]
+            release_date = datetime.datetime.strptime(release_date, '%Y-%m-%d %H:%M:%S')
+            # zip news items
+            news_items.append((result['title'], result['subtitle'], result['href'], release_date))
     except (KeyError, ValueError):
         pass
     return news_items
