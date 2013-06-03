@@ -8,7 +8,7 @@ It searches for certain terms in headings of ZEIT articles and returns all hits 
 It was created using [Django](http://djangoproject.com) and [ZEIT ONLINE Content API](http://developer.zeit.de/index/).
 
 ## What is it good for? ##
-It's a pet project for gaining skill in Python and Django. It might have useful features someday, e.g. search within
+It's a tinkering project for gaining skill in Python and Django. It might have useful features someday, e.g. search within
 user-defined scopes (title, subtitle, text), clearly defined search operators and basic concept disambiguation.
 
 ## What's next? ##
