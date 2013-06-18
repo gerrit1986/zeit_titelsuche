@@ -12,6 +12,8 @@ It's a tinkering project for gaining skill in Python and Django. It might have u
 user-defined scopes (title, subtitle, text), clearly defined search operators and basic concept disambiguation.
 
 ## What's next? ##
+* Users should be able to choose the order of the results (ascending by date, descending by date; titles: A-Z, Z-A; etc.)
+* Queries will  be written into database for analysis of user behaviour using the admin
 * Summaries and full text should be searchable with respect to the user's choice
 * The following search operators should work: (`""`; `*`; `NOT`; `AND`; `OR`; `XOR`)
 * Basic concept disambiguation ("Do you mean ...?")
